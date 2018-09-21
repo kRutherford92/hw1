@@ -28,12 +28,10 @@ def make_prediction():
         day_of_the_week = request.form.get('day_of_the_week')
         promo = request.form.get('promo')
         promo2 = request.form.get('promo2')
-        state_holiday = request.f.get('state_holiday')
+        state_holiday = request.form.get('state_holiday')
         school_holiday = request.form.get('school_holiday')
         assortment = request.form.get('assortment')
         store_type = request.form.get('store_type')
-
-        return (month, day_of_the_week, promo, promo2, state_holiday, school_holiday, assortment, store_type)
 
         # one-hot encode categorical variables
 
@@ -48,10 +46,10 @@ def make_prediction():
         # ========== End of Part 2.3 ==========
 
         # make prediction
-        #prediction = model.predict(np.array(entered_li).reshape(1, -1))
-        #label = str(np.squeeze(prediction.round(2)))
+        prediction = model.predict(np.array(entered_li).reshape(1, -1))
+        label = str(np.squeeze(prediction.round(2)))
 
-        #return render_template('index.html', label=label)
+        return render_template('index.html', label=label)
 
 if __name__ == '__main__':
     # load ML model
