@@ -32,16 +32,91 @@ def make_prediction():
         school_holiday = request.form.get('school_holiday')
         assortment = request.form.get('assortment')
         store_type = request.form.get('store_type')
+        store = request.form.get('store')
 
         # one-hot encode categorical variables
+        
+        # Store
+        for i in range(1115):
+            if (i != 291) & (i != 622) & (i != 879):
+                if i == store:
+                    entered_li.append(1)
+                else:
+                    entered_li.append(0)
 
+        # StoreType
+        if store_type == 1:
+            StoreType_a = 1
+        else:
+            StoreType_a = 0
+        if store_type == 2:
+            StoreType_b = 1
+        else:
+            StoreType_b = 0;
+        if store_type == 3:
+            StoreType_c = 1
+        else:
+            StoreType_c = 0
+        if store_type == 4:
+            StoreType_d = 1
+        else:
+            StoreType_d = 0
+
+        # Assortment
+        if assortment == 1:
+            Assortment_a = 1
+        else:
+            Assortment_a = 0
+        if assortment == 2:
+            Assortment_b = 1
+        else:
+            Assortment_b = 0
+        if assortment == 3:
+            Assortment_c = 1
+        else:
+            Assortment_c = 0
+
+        # State Holiday
+        if state_holiday == 1:
+            StateHoliday_0 = 1
+        else:
+            StateHoliday_0 = 0
+        if state_holiday == 2:
+            StateHoliday_a = 1
+        else:
+            StateHoliday_a = 0
+        if state_holiday == 3:
+            StateHoliday_b = 1
+        else:
+            StateHoliday_b = 0
+        if state_holiday == 4:
+            StateHoliday_c = 1
+        else:
+            StateHoliday_c = 0
 
         # manually specify competition distance
         comp_dist = 5458.1
 
 
         # build 1 observation for prediction
-
+        
+        entered_li.append(StoreType_a)
+        entered_li.append(StoreType_b)
+        entered_li.append(StoreType_c)
+        entered_li.append(StoreType_d)
+        entered_li.append(Assortment_a)
+        entered_li.append(Assortment_b)
+        entered_li.append(Assortment_c)
+        entered_li.append(StateHoliday_0)
+        entered_li.append(StateHoliday_a)
+        entered_li.append(StateHoliday_b)
+        entered_li.append(StateHoliday_c)
+        entered_li.append(comp_dist)
+        entered_li.append(promo2)
+        entered_li.append(promo)
+        entered_li.append(day_of_the_week)
+        entered_li.append(month)
+        entered_li.append(school_holiday)
 
         # ========== End of Part 2.3 ==========
 
